@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node
+{
+	int data;
+	struct node* next;
+}node;
+
+void push(int data);
+int  pop();
+struct node* head;
+
+main()
+{
+	head = NULL;
+  // Example off pushing values to our stack 
+	push(1);
+	push(2);
+	push(3);
+	
+
+
+ // displaying the result to see if our program works properly
+	struct node* head2 = head;
+	while(head2 !=NULL)
+	{
+		printf("\n the value is %i ",head2->data);
+		head2 = head2->next;
+	}
+
+// poping out Values 
+
+       int n1 = pop();
+       int n2 = pop();
+      printf(" \n first pop => n1 = %i  \n second pop => n2 = %i \n",n1,n2);
+
+// print our list after 2 pop operations
+    printf("\n******************************\n");
+	head2 = head;
+	while(head2 !=NULL)
+	{
+		printf("\n the value is %i \n",head2->data);
+		head2 = head2->next;
+	}
+
+
+}
+
+
+void push(int data)
+{ 
+	struct node* temp1 = (node*)malloc(sizeof(node));
+    temp1->data = data;
+    temp1->next = head;
+    head  =   temp1; 
+}
+
+int pop()
+{
+   if (head == NULL)
+   {
+   	return -1;
+   }
+   else
+   {
+   	int data =head->data;
+   	struct node * delete = head;
+   	head = delete->next;
+   	free(delete);
+   	return data;
+   }
+
+}
