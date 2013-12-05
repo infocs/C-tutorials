@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node
+{
+        int data;
+        struct node* next;
+}node;
+
+
+void Enqueue(int x);
+void Dequeue();
+
+struct node* font;
+struct node* rear;
+
+
+main()
+{
+ front = NULL;
+ rear  = NULL;
+
+ Enqueue(1);
+ Enqueue(2);      
+ 
+ struct node* temp = front;
+ while (temp !=NULL)
+ {
+  printf("\n the value is %i \n",temp->data);
+ }
+
+}
+
+void Enqueue(int x)
+{
+  struct node* temp = (node*)malloc(sizeof(node));
+  temp->data = x;
+  temp->next = NULL;
+  // if front = rear = NULL this is the starting positoin 
+  if (front == NULL && rear == NULL)
+  {
+    front = rear = temp;
+    return;
+  }
+  else
+  {
+    rear->next = temp;
+    rear = temp;
+  }
+}
+
+void Dequeue()
+{
+  struct node* temp = front;
+  if (front == NULL)
+  {
+    return;
+  }
+  else
+  {
+    front = front->next;
+    free(temp);
+
+  }
+} 
+
