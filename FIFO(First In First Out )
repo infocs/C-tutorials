@@ -1,0 +1,99 @@
+#include<stdlib.h>
+#include<stdio.h>
+ 
+
+
+ /*  Enqueue Function 
+     It used to insert elements at the rear (end) of our queue
+ */
+
+ /* Dequeue Function
+    It is used to dequeue elements from the front of our queue
+ */
+
+
+typedef struct node
+{
+	int data;
+	struct node* next;
+}node;
+
+
+void Enqueue(node** front,node** rear,int data);
+int Dequeue(node** front,node** rear);
+main()
+{
+
+	struct node* front = NULL;
+	struct node* rear  = NULL;
+
+	// small test  by pushing 1,2 then 3
+	Enqueue(&front,&rear,1);
+	Enqueue(&front,&rear,2);
+	Enqueue(&front,&rear,3);
+	
+    
+    
+    // displaying the queue after inserting elements
+    struct node* temp = front;
+    while(temp !=NULL)
+    {
+    	printf("\n data = %i \n",temp->data);
+    	temp  = temp->next;
+
+    }
+   
+    // Dequeue One element and Print it out  
+    int n;
+    n =  Dequeue(&front,&rear);
+    printf("the dequeued values is %i",n);
+    
+    printf("\n the queue after dequeue is : \n");
+
+    temp = front;
+    while(temp !=NULL)
+    {
+    	printf("\n data = %i \n",temp->data);
+    	temp  = temp->next;
+
+    }
+
+  
+}
+
+
+
+
+void Enqueue(node** front,node** rear,int data)
+{
+	struct node* temp = (node*)malloc(sizeof(node));
+	temp->data = data;
+	temp->next = NULL;
+
+	if ( *front == NULL && *rear == NULL)
+	{
+	   *front = *rear = temp;
+	}
+	else
+	{
+		(*rear)->next = temp;
+		*rear = temp;
+	}
+}
+
+
+int Dequeue(node** front,node** rear)
+{
+	if (*front == NULL && *rear ==NULL)
+	{
+		return (-1);
+	}
+	else
+	{
+		int data = (*front)->data;
+		struct node* temp = *front;
+		(*front) = (*front)->next;
+		free(temp);
+		return data;
+	}
+}
