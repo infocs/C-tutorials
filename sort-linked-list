@@ -1,0 +1,39 @@
+
+// sorting linked list function 
+// assuming we have the structure of node like this :
+// typedef struct node
+// {
+//   int data;
+//   struct node *next;
+// }node;
+////////////////////////////////////////////////////////
+
+
+void Sort(node **head)
+{
+  int x;
+  struct node *tmp1 = *head;
+  struct node* tmp2 = NULL;
+  while((tmp1->next)->next !=NULL)
+  {
+      tmp2 = tmp1->next;
+      while(tmp2 !=NULL)
+      {
+        if(tmp1->data < tmp2->data)
+        {
+          x = tmp1->data;
+          tmp1->data = tmp2->data;
+          tmp2->data = x;
+        }
+        tmp2 = tmp2->next;
+      }
+      tmp1 = tmp1->next;
+  }
+
+  if (tmp1->data < (tmp1->next)->data)
+  {
+    x = tmp1->data;
+    tmp1->data  = (tmp1->next)->data;
+    (tmp1->next)->data = x;
+  }
+}
